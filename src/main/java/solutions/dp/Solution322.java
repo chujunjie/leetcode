@@ -10,8 +10,39 @@ import java.util.Arrays;
  * @Modified By
  */
 public class Solution322 {
-    public static void main(String[] args) {
-        System.out.println(dp(new int[]{1, 2, 5}, 11));
+
+    private static int ANS = Integer.MAX_VALUE;
+
+    private static int coinChange(int[] coins, int amount) {
+        Arrays.sort(coins);
+        dfs(coins, coins.length - 1, amount, 0);
+        return ANS == Integer.MAX_VALUE ? -1 : ANS;
+    }
+
+    /**
+     * @param coins  待选的硬币面值
+     * @param index  当前选择的硬币面值的索引
+     * @param amount 需要凑够的金额
+     * @param cnt    目前已选的硬币数量
+     */
+    private static void dfs(int[] coins, int index, int amount, int cnt) {
+        if (index < 0) {
+            return;
+        }
+        for (int c = amount / coins[index]; c >= 0; c--) {
+            int na = amount - c * coins[index];
+            int ncnt = cnt + c;
+            if (na == 0) {
+                ANS = Math.min(ANS, ncnt);
+                // 剪枝1
+                break;
+            }
+            if (ncnt + 1 >= ANS) {
+                // 剪枝2
+                break;
+            }
+            dfs(coins, index - 1, na, ncnt);
+        }
     }
 
     private static int dp(int[] coins, int amount) {
@@ -28,5 +59,11 @@ public class Solution322 {
             }
         }
         return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    public static void main(String[] args) {
+        int[] coins = new int[]{1, 2, 5};
+        System.out.println(dp(coins, 11));
+        System.out.println(coinChange(coins, 11));
     }
 }
