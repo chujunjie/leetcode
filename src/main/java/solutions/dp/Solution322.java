@@ -13,6 +13,60 @@ public class Solution322 {
 
     private static int ANS = Integer.MAX_VALUE;
 
+    /**
+     * 暴力递归
+     *
+     * @param coins  coins
+     * @param amount amount
+     * @return int
+     */
+    private static int dp(int[] coins, int amount) {
+        if (amount < 0) {
+            return -1;
+        }
+        if (amount == 0) {
+            return 0;
+        }
+        int min = Integer.MAX_VALUE;
+        for (int coin : coins) {
+            int res = dp(coins, amount - coin);
+            if (res >= 0 && res < min) {
+                min = res + 1;
+            }
+        }
+        return min == Integer.MAX_VALUE ? -1 : min;
+    }
+
+    /**
+     * 迭代
+     *
+     * @param coins  coins
+     * @param amount amount
+     * @return int
+     */
+    private static int dp2(int[] coins, int amount) {
+        int max = amount + 1;
+        // 目标金额为i时，至少需要dp[i]个硬币
+        int[] dp = new int[amount + 1];
+        Arrays.fill(dp, max);
+        dp[0] = 0;
+        for (int i = 1; i <= amount; i++) {
+            for (int coin : coins) {
+                if (coin <= i) {
+                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+                }
+            }
+        }
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+
+    /**
+     * dfs
+     *
+     * @param coins  coins
+     * @param amount amount
+     * @return int
+     */
     private static int coinChange(int[] coins, int amount) {
         Arrays.sort(coins);
         dfs(coins, coins.length - 1, amount, 0);
@@ -45,25 +99,10 @@ public class Solution322 {
         }
     }
 
-    private static int dp(int[] coins, int amount) {
-        int max = amount + 1;
-        // 目标金额为i时，至少需要dp[i]个硬币
-        int[] dp = new int[amount + 1];
-        Arrays.fill(dp, max);
-        dp[0] = 0;
-        for (int i = 1; i <= amount; i++) {
-            for (int coin : coins) {
-                if (coin <= i) {
-                    dp[i] = Math.min(dp[i], dp[i - coin] + 1);
-                }
-            }
-        }
-        return dp[amount] > amount ? -1 : dp[amount];
-    }
-
     public static void main(String[] args) {
         int[] coins = new int[]{1, 2, 5};
         System.out.println(dp(coins, 11));
+        System.out.println(dp2(coins, 11));
         System.out.println(coinChange(coins, 11));
     }
 }
