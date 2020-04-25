@@ -13,6 +13,14 @@ public class SolutionBackpack {
     /**
      * 01背包
      *
+     * 状态：【背包的容量】和【可选择的物品】
+     * 选择：【是否装进背包】
+     *
+     * for 状态1 in 状态1的所有取值：
+     *     for 状态2 in 状态2的所有取值：
+     *         for ...
+     *             dp[状态1][状态2][...] = 择优(选择1，选择2...)
+     *
      * @param ws    物品重量
      * @param vs    物品价值
      * @param count 物品数量
