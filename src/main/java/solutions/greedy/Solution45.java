@@ -1,4 +1,4 @@
-package solutions.dp;
+package solutions.greedy;
 
 import java.util.Arrays;
 
@@ -13,6 +13,12 @@ import java.util.Arrays;
  */
 public class Solution45 {
 
+    /**
+     * 贪心算法 通过局部最优解得到全局最优解
+     *
+     * @param nums nums
+     * @return int
+     */
     private static int jump2(int[] nums) {
         int length = nums.length;
         int end = 0;
