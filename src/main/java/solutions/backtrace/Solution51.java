@@ -1,4 +1,4 @@
-package solutions.hard;
+package solutions.backtrace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,24 @@ import java.util.List;
  */
 public class Solution51 {
 
+    /**
+     * 回溯算法
+     * <p>
+     * 框架：
+     *result = []
+     * def backtrack(路径, 选择列表):
+     *     if 满足结束条件:
+     *         result.add(路径)
+     *         return
+     *
+     *     for 选择 in 选择列表:
+     *         做选择
+     *         backtrack(路径, 选择列表)
+     *         撤销选择
+     *
+     * @param n n
+     * @return 放置列表
+     */
     public static List<List<String>> solveNQueens(int n) {
         List<List<String>> lists = new ArrayList<>();
         char[][] board = new char[n][n];
@@ -79,12 +97,12 @@ public class Solution51 {
         int dx, dy;
         for (int qx = 0; qx < x; qx++) {
             dy = y - queens[qx];
-            // 在同一列上有王后
+            // 在同一列上有皇后
             if (dy == 0) {
                 return false;
             }
             dx = x - qx;
-            // 斜率为1或-1时，在斜线上有王后
+            // 斜率为1或-1时，在斜线上有皇后
             if (dx == dy || dx == -dy) {
                 return false;
             }
