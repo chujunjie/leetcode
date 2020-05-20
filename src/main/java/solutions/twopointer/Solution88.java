@@ -68,7 +68,7 @@ public class Solution88 {
 
         int[] num3 = new int[]{1, 2, 3, 0, 0, 0};
         int[] num4 = new int[]{2, 5, 6};
-        merge1(num3, 3, num4, 3);
+        merge2(num3, 3, num4, 3);
         System.out.println(Arrays.toString(num3));
     }
 }
