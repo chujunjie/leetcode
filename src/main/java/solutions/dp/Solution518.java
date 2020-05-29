@@ -6,7 +6,6 @@ package solutions.dp;
  *
  * @author chujunjie
  * @date Create in 10:52 下午 2020/4/27
- * @Modified by
  */
 public class Solution518 {
 
@@ -24,7 +23,7 @@ public class Solution518 {
         int[][] dp = new int[coins.length + 1][amount + 1];
 
         // base case
-        for (int i = 0; i < coins.length; i++) {
+        for (int i = 0; i <= coins.length; i++) {
             dp[i][0] = 1;
         }
 
