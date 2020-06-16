@@ -44,6 +44,28 @@ public class Util {
     }
 
     /**
+     * 取高n位
+     *
+     * @param num nums
+     * @param n   高n位
+     * @return int
+     */
+    public static int topBits(int num, int n) {
+        return num >>> n;
+    }
+
+    /**
+     * 取低n位
+     *
+     * @param num nums
+     * @param n   低n位
+     * @return int
+     */
+    public static int lowBits(int num, int n) {
+        return num & (1 << n - 1);
+    }
+
+    /**
      * 找出不重复的数
      *
      * @param nums nums
