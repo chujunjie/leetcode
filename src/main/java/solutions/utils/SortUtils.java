@@ -13,6 +13,42 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 归并排序
+     * 分治思想：将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。
+     *
+     * @param arr arr
+     */
+    public static void merge(int[] arr) {
+        int length = arr.length;
+        int[] tmp = new int[length];
+        merge(arr, tmp, 0, length - 1);
+    }
+
+    private static void merge(int[] arr, int[] tempArr, int left, int right) {
+        if (left < right) {
+            int mid = (left + right) >> 1;
+            merge(arr, tempArr, left, mid);
+            merge(arr, tempArr, mid + 1, right);
+            merge(arr, tempArr, left, mid, mid + 1, right);
+        }
+    }
+
+    private static void merge(int[] arr, int[] tempArr, int leftPos, int leftEnd, int rightPos, int rightEnd) {
+        int tmpPos = leftPos;
+        int sum = rightEnd - leftPos + 1;
+        while (leftPos <= leftEnd && rightPos <= rightEnd) {
+            if (arr[leftPos] < arr[rightPos])
+                tempArr[tmpPos++] = arr[leftPos++];
+            else tempArr[tmpPos++] = arr[rightPos++];
+        }
+        while (leftPos <= leftEnd)
+            tempArr[tmpPos++] = arr[leftPos++];
+        while (rightPos <= rightEnd)
+            tempArr[tmpPos++] = arr[rightPos++];
+        System.arraycopy(tempArr, tmpPos - sum, arr, tmpPos - sum, sum);
+    }
+
+    /**
      * 插入排序
      * 基本思想：在要排序的一组数中，假设前面(n-1) [n>=2] 个数已经是排好顺序的，
      * 现在要把第n个数插到前面的有序数中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。
@@ -227,5 +263,10 @@ public class SortUtils {
         int[] c = {16, 8, 7, 50, 1, 26};
         insert(c);
         System.out.println(Arrays.toString(c));
+
+        // 6.堆排序
+        int[] d = {16, 8, 7, 50, 1, 26};
+        merge(d);
+        System.out.println(Arrays.toString(d));
     }
 }
