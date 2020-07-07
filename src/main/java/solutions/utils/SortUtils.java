@@ -13,6 +13,23 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 插入排序
+     * 基本思想：在要排序的一组数中，假设前面(n-1) [n>=2] 个数已经是排好顺序的，
+     * 现在要把第n个数插到前面的有序数中，使得这n个数也是排好顺序的。如此反复循环，直到全部排好顺序。
+     *
+     * @param a a
+     */
+    public static void insert(int[] a) {
+        int j;
+        for (int i = 1; i < a.length; i++) {
+            int temp = a[i];
+            for (j = i; j > 0 && a[j - 1] > temp; j--)
+                a[j] = a[j - 1];
+            a[j] = temp;
+        }
+    }
+
+    /**
      * 堆排序
      *
      * @param a a
@@ -120,10 +137,10 @@ public class SortUtils {
      *
      * @param arr arr
      */
-    private static void bubble(int[] arr) {
+    public static void bubble(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j + 1] > arr[j]) {
+                if (arr[j + 1] < arr[j]) {
                     int temp = arr[j + 1];
                     arr[j + 1] = arr[j];
                     arr[j] = temp;
@@ -205,5 +222,10 @@ public class SortUtils {
         int[] b = {16, 8, 7, 50, 1, 26};
         heap(b);
         System.out.println(Arrays.toString(b));
+
+        // 5.插入排序
+        int[] c = {16, 8, 7, 50, 1, 26};
+        insert(c);
+        System.out.println(Arrays.toString(c));
     }
 }
