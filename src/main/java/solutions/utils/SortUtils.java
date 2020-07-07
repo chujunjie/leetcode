@@ -13,6 +13,41 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 快速排序
+     * 选择第一个数为p，小于p的数放在左边，大于p的数放在右边。
+     * 递归的将p左边和右边的数都按照第一步进行，直到不能递归。
+     *
+     * @param a a
+     */
+    public static void quick(int[] a) {
+        quick(a, 0, a.length - 1);
+    }
+
+    private static void quick(int[] a, int start, int end) {
+        if (start < end) {
+            // 选基准值
+            int baseNum = a[start];
+            int temp;
+            int i = start;
+            int j = end;
+            while (i < j) {
+                while (baseNum <= a[j] && i < j) j--;
+                while (baseNum >= a[i] && i < j) i++;
+                if (i < j) {
+                    temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
+                }
+            }
+            //最后将基准为与i和j相等位置的数字交换
+            a[start] = a[i];
+            a[i] = baseNum;
+            quick(a, start, j - 1);
+            quick(a, j + 1, end);
+        }
+    }
+
+    /**
      * 归并排序
      * 分治思想：将已有序的子序列合并，得到完全有序的序列；即先使每个子序列有序，再使子序列段间有序。
      *
@@ -264,9 +299,14 @@ public class SortUtils {
         insert(c);
         System.out.println(Arrays.toString(c));
 
-        // 6.堆排序
+        // 6.归并排序
         int[] d = {16, 8, 7, 50, 1, 26};
         merge(d);
         System.out.println(Arrays.toString(d));
+
+        // 7.快速排序
+        int[] e = {6, 1, 2, 7, 9, 11, 4, 5, 10, 8};
+        quick(e);
+        System.out.println(Arrays.toString(e));
     }
 }
