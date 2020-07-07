@@ -13,6 +13,23 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 冒泡排序
+     *
+     * @param arr arr
+     */
+    private static void bubble(int[] arr) {
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j + 1] > arr[j]) {
+                    int temp = arr[j + 1];
+                    arr[j + 1] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+    }
+
+    /**
      * 基数排序
      * 用于大量数，很长的数进行排序时。
      * 将所有的数的个位数取出，按照个位数进行排序，构成一个序列。
@@ -70,5 +87,10 @@ public class SortUtils {
         int[] a = {16, 8, 7, 50, 1, 26};
         baseSort(a);
         System.out.println(Arrays.toString(a));
+
+        // 2.冒泡排序
+        int[] arr = {12, 35, 99, 18, 76};
+        bubble(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
