@@ -3,10 +3,12 @@ package solutions.utils;
 import java.util.Arrays;
 
 /**
+ * 位运算工具类
+ *
  * @author chujunjie
  * @date Create in 21:23 2020/6/15
  */
-public class Util {
+public class BitOperationUtils {
 
     /**
      * 判断奇偶
@@ -62,7 +64,7 @@ public class Util {
      * @return int
      */
     public static int lowBits(int num, int n) {
-        return num & (1 << n - 1);
+        return num & ((1 << n) - 1);
     }
 
     /**
