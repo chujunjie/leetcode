@@ -14,9 +14,10 @@ public class SortUtils {
 
     /**
      * 桶排序
+     *
      * @param arr arr
      */
-    private static void bucketSort(int[] arr) {
+    public static void bucket(int[] arr) {
 
         // 寻找数组中min，max，用于建桶
         int min = 0, max = 0;
@@ -76,7 +77,7 @@ public class SortUtils {
      *
      * @param a a
      */
-    public static void baseSort(int[] a) {
+    public static void base(int[] a) {
         // 首先确定排序的趟数
         int max = a[0];
         for (int i = 1; i < a.length; i++) {
@@ -124,7 +125,7 @@ public class SortUtils {
 
         // 1.基数排序
         int[] a = {16, 8, 7, 50, 1, 26};
-        baseSort(a);
+        base(a);
         System.out.println(Arrays.toString(a));
 
         // 2.冒泡排序
@@ -134,7 +135,7 @@ public class SortUtils {
 
         // 3.桶排序
         int[] nums = {-1, -3, 0, 2, 4, 4, 3, 6, 9};
-        bucketSort(nums);
+        bucket(nums);
         System.out.println(Arrays.toString(nums));
     }
 }
