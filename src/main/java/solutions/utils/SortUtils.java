@@ -1,21 +1,26 @@
-package solutions.sort;
+package solutions.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * 基数排序
- * 用于大量数，很长的数进行排序时。
- * 将所有的数的个位数取出，按照个位数进行排序，构成一个序列。
- * 将新构成的所有的数的十位数取出，按照十位数进行排序，构成一个序列。
+ * 排序工具类
  *
  * @author chujunjie
- * @date Create in 23:12 2020/7/7
+ * @date Create in 23:17 2020/7/7
  */
-public class BaseSort {
+public class SortUtils {
 
-    private static void baseSort(int[] a) {
+    /**
+     * 基数排序
+     * 用于大量数，很长的数进行排序时。
+     * 将所有的数的个位数取出，按照个位数进行排序，构成一个序列。
+     * 将新构成的所有的数的十位数取出，按照十位数进行排序，构成一个序列。
+     *
+     * @param a a
+     */
+    public static void baseSort(int[] a) {
         // 首先确定排序的趟数
         int max = a[0];
         for (int i = 1; i < a.length; i++) {
@@ -60,6 +65,8 @@ public class BaseSort {
     }
 
     public static void main(String[] args) {
+
+        // 1.基数排序
         int[] a = {16, 8, 7, 50, 1, 26};
         baseSort(a);
         System.out.println(Arrays.toString(a));
