@@ -13,6 +13,27 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 希尔排序，采用希尔增量
+     * 将数的个数设为n，取奇数k=n/2，将下标差值为k的数分为一组，构成有序序列。
+     * 再取k=k/2 ，将下标差值为k的书分为一组，构成有序序列。
+     * 重复第二步，直到k=1执行简单插入排序。
+     *
+     * @param a a
+     */
+    public static void shellSort(int[] a) {
+        int j;
+        for (int gap = a.length / 2; gap > 0; gap /= 2) {
+            // 共gap个组，每组插排
+            for (int i = gap; i < a.length; i++) {
+                int temp = a[i];
+                for (j = i; j >= gap && temp < a[j - gap]; j -= gap)
+                    a[j] = a[j - gap];
+                a[j] = temp;
+            }
+        }
+    }
+
+    /**
      * 选择排序
      * 首先确定循环次数，并且记住当前数字和当前位置。
      * 将当前位置后面所有的数与当前数字进行对比，小数赋值给key，并记住小数的位置。
@@ -339,5 +360,10 @@ public class SortUtils {
         int[] f = {16, 8, 7, 50, 1, 26};
         select(f);
         System.out.println(Arrays.toString(f));
+
+        // 9.希尔排序
+        int[] k = {16, 8, 7, 50, 1, 26};
+        shellSort(k);
+        System.out.println(Arrays.toString(k));
     }
 }
