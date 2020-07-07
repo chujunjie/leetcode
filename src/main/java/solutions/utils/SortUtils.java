@@ -13,6 +13,32 @@ import java.util.List;
 public class SortUtils {
 
     /**
+     * 选择排序
+     * 首先确定循环次数，并且记住当前数字和当前位置。
+     * 将当前位置后面所有的数与当前数字进行对比，小数赋值给key，并记住小数的位置。
+     * 比对完成后，将最小的值与第一个数的值交换。
+     *
+     * @param a a
+     */
+    public static void select(int[] a) {
+        int len = a.length;
+        // 循环次数
+        for (int i = 0; i < len; i++) {
+            int value = a[i];
+            int position = i;
+            // 找到最小的值和位置
+            for (int j = i + 1; j < len; j++) {
+                if (a[j] < value) {
+                    value = a[j];
+                    position = j;
+                }
+            }
+            a[position] = a[i];
+            a[i] = value;
+        }
+    }
+
+    /**
      * 快速排序
      * 选择第一个数为p，小于p的数放在左边，大于p的数放在右边。
      * 递归的将p左边和右边的数都按照第一步进行，直到不能递归。
@@ -308,5 +334,10 @@ public class SortUtils {
         int[] e = {6, 1, 2, 7, 9, 11, 4, 5, 10, 8};
         quick(e);
         System.out.println(Arrays.toString(e));
+
+        // 8.选择排序
+        int[] f = {16, 8, 7, 50, 1, 26};
+        select(f);
+        System.out.println(Arrays.toString(f));
     }
 }
