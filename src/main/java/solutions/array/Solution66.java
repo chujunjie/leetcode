@@ -1,16 +1,16 @@
-package solutions.easy;
+package solutions.array;
 
 import java.util.Arrays;
 
 /**
- * @Description: 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
+ * 给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。
  * <p>
  * 最高位数字存放在数组的首位， 数组中每个元素只存储单个数字。
  * <p>
  * 你可以假设除了整数 0 之外，这个整数不会以零开头。
- * @Author: chujunjie
- * @Date: Create in 19:24 2020/1/31
- * @Modified By
+ *
+ * @author chujunjie
+ * @date Create in 19:24 2020/1/31
  */
 public class Solution66 {
 
