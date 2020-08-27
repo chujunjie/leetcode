@@ -1,12 +1,12 @@
-package solutions.easy;
+package solutions.linkedlist;
 
 import solutions.datastructure.ListNode;
 
 /**
- * @Description: 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
- * @Author: chujunjie
- * @Date: Create in 15:26 2020/1/28
- * @Modified By
+ * 将两个有序链表合并为一个新的有序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。
+ *
+ * @author chujunjie
+ * @date Create in 15:26 2020/1/28
  */
 public class Solution21 {
 
@@ -53,16 +53,6 @@ public class Solution21 {
             }
             current = current.next;
         }
-//        while (l1 != null) {
-//            current.next = new ListNode(l1.val);
-//            l1 = l1.next;
-//            current = current.next;
-//        }
-//        while (l2 != null) {
-//            current.next = new ListNode(l2.val);
-//            l2 = l2.next;
-//            current = current.next;
-//        }
 
         // 优化
         current.next = l1 == null ? l2 : l1;
